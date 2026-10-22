@@ -1,0 +1,39 @@
+# Velodyne VLP-16 驱动参数（FAST-LIO 专用覆盖值）
+# 注意：ROS 2 参数 YAML 只支持 '#' 注释。
+#
+# 这两个参数是 FAST-LIO 能正常工作的前提，详见 config/velodyne.yaml 顶部说明：
+#   timestamp_first_packet: true   → scan->header.stamp = 第一个包的时间（= scan 起始），
+#                                    这样 velodyne_pointcloud 算出的每点 time ∈ [0, ~0.1]s 才是正偏移
+#   organize_cloud: false          → 未组织化输出，无效回波（NaN）不会进入点云
+#
+# 用法：
+#   ros2 run velodyne_driver velodyne_driver_node --ros-args --params-file <本文件>
+#   或直接使用 launch/velodyne_hi12_bringup.launch.py
+velodyne_driver_node:
+    ros__parameters:
+        device_ip: ""              # 空 = 监听所有来源（雷达默认 192.168.1.201）
+        gps_time: false
+        time_offset: 0.0
+        enabled: true
+        read_once: false
+        read_fast: false
+        repeat_delay: 0.0
+        frame_id: velodyne
+        model: VLP16
+        rpm: 600.0                 # ★ 雷达实测 rpm=601（HTTP /cgi/status.json）→ 必须填 600，
+                                   #   驱动用 npackets=ceil(754/rpm*60) 成帧：600rpm → 76 包 ≈ 一整圈(100.8ms)
+                                   #   之前误填 1200 只攒 38 包 → 每帧只有 90° 视野，建图必崩
+        port: 2368
+        timestamp_first_packet: true   # ★ 必须 true
+        cut_angle: -1.0                # 关闭按角度切分，按包数成帧
+
+velodyne_transform_node:
+    ros__parameters:
+        calibration: VLP16db.yaml  # 会被 launch 替换成 share 目录下的绝对路径
+        model: VLP16
+        min_range: 0.5             # VLP-16 最近量程 0.5m（默认 0.9 会砍掉近处点）
+        max_range: 130.0
+        view_direction: 0.0
+        fixed_frame: ""
+        target_frame: ""
+        organize_cloud: false      # ★ 必须 false（避免 NaN 填充点进入 FAST-LIO）

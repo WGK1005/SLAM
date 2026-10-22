@@ -1,0 +1,91 @@
+# FAST-LIO 配置：Velodyne VLP-16 + 超核(HIPNUC) HI12 IMU
+# 注意：ROS 2 参数 YAML 只支持 '#' 注释；文件里的 '/**' 是"匹配所有节点"的键名，不是注释。
+#
+# ====================== 关键前提（必须与驱动侧一致）======================
+# 1) 雷达驱动必须设 timestamp_first_packet: true
+#    否则 velodyne_driver 把 scan->header.stamp 设为"最后一个包"的时间，而
+#    velodyne_pointcloud 用该 stamp 当 scan_start_time 去算每点 time →
+#    绝大多数点的 time 变成负数，FAST-LIO 去畸变会整体错位。
+#    【已用真实 bag 验证】你之前的录制就是这种情况：time ∈ [-0.0498, +0.0013]。
+# 2) 雷达驱动必须设 organize_cloud: false
+#    只有未组织化容器才会按 min_range/max_range 丢点；组织化点云里的 NaN 填充点会被
+#    velodyne_handler 当成有效点（NaN 与 blind 的比较恒为 false）灌进地图。
+# 3) 本文件 timestamp_unit 必须是 0(SEC)：Humble 版 velodyne 驱动的 time 字段单位是"秒"
+#    且是相对 scan 起始的偏移（源码 rawdata.cpp：time = timing_offsets + (pkt.stamp - scan_start_time).seconds()）
+#    【已用真实 bag 验证】实测数值 ≈ 0.05（秒），写成 2(US) 会让 curvature≈0，等于不做运动补偿。
+#
+# ====================== 你的真实数据实测参数 ======================
+# ====================== 实测参数（2026-10-09 实测） ======================
+#  雷达      : VLP-16 @ 600rpm(10Hz)、单回波(Strongest)、76 包/帧
+#  点云字段  : x, y, z, intensity, ring, time   point_step=22
+#  每帧点数  : 1~3 万（取决于场景大小）
+#
+# ★ 关键教训（用 [diag] 诊断定位）：体素大小必须与"场景大小"匹配
+#   拥挤场景（墙面离传感器 ~0.9m，可见表面积仅 ~7m²）+ filter 0.5m 时：
+#     一帧 4807 点 → 0.5m 体素降采样后只剩 58 点；地图只剩 275 点
+#     → 5 邻域跨越不同表面 → 平面拟合失败 96% → No Effective Points! → 状态发散（RViz 里一团乱麻）
+#   所以：filter_size_surf/map 要按场景调小；传感器尽量放在离墙 2m 以上的开阔处。
+# ======================================================================
+/**:
+    ros__parameters:
+        feature_extract_enable: false
+        point_filter_num: 1          # 场景小时用 1 保留全部点（10Hz 下实测实时；香橙派可改 2~4）
+        max_iteration: 3
+        filter_size_surf: 0.2        # ★ 原 0.5：拥挤场景下会把一帧压成几十个点，见上面教训
+        filter_size_map: 0.3         # ★ 原 0.5：地图体素同样要减小，否则地图过稀、邻域跨面
+        cube_side_length: 1000.0
+        runtime_pos_log_enable: false
+        map_file_path: "/home/wgk/maps/pc_base2_raw.pcd"   # ★ /map_save 服务写出的 PCD（绝对路径）
+
+        common:
+            lid_topic:  "/velodyne_points"  # ★ 时间戳规范化节点的输出（tools/timestamp_normalizer.py）
+                                                 #   直接用 /velodyne_points 会带上雷达内部时钟的跳变（实测 100s 倒退 6 次、最大 1.75s）
+            imu_topic:  "/imu/data"   # ★ 规范化节点的 IMU 输出（与点云同一时基）
+            time_sync_en: false            # 雷达与 IMU 同机同时钟，不需要软件同步
+            time_offset_lidar_to_imu: 0.0  # 串口延迟造成的固定偏差；LI-Init 标定后填这里
+
+        preprocess:
+            lidar_type: 2                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR,
+            scan_line: 16                # ★ VLP-16 = 16 线（上游默认 32，用 VLP-16 必须改成 16）
+            scan_rate: 10                # ★ 雷达实测 rpm=601（HTTP /cgi/status.json）→ 600rpm = 10Hz
+            timestamp_unit: 0            # ★ 0=second（已用真实数据验证驱动给的是秒）
+            blind: 0.5                   # VLP-16 最近量程 0.5m；室内可放大到 1.0
+
+        mapping:
+            acc_cov: 0.1
+            gyr_cov: 0.1
+            b_acc_cov: 0.0001
+            b_gyr_cov: 0.0001
+            fov_degree:    360.0
+            det_range:     100.0
+            extrinsic_est_en:  false     # true 时 FAST-LIO 会在线估计 LiDAR-IMU 外参（雅可比含 offset_R_L_I）
+                                         # 建议：先按下面步骤手动测好外参并设 false；想让它在跑的过程中自己收敛初值可以临时置 true
+            # ---------- 外参必须实测，别用占位值 ----------
+            # 含义：extrinsic_T = LiDAR 原点在 IMU 坐标系下的位置(m)；extrinsic_R = LiDAR→IMU 的旋转（按行展开）
+            # 步骤：
+            #   1) 用尺子量 LiDAR 中心到 IMU 中心的三个方向偏移 → 填 extrinsic_T
+            #   2) 静止时 ros2 topic echo /imu/data --field linear_acceleration → z 应 ≈ +9.8（确认 z 轴朝上）
+            #   3) 把传感器"低头"（LiDAR 的 x 方向向下倾斜约 30°）：
+            #        若 IMU 的 x 分量变负 → IMU 的 x 就是前方；若变成 y 分量变负 → IMU 是 y 朝前（需要绕 z 转 90°）
+            #   4) 俯视逆时针旋转传感器：
+            #        angular_velocity.z 为正 → 右手系 z 朝上（多数情况）；为负 → y 轴反向
+            #   5) 常见组合：雷达(前-左-上) ↔ IMU(前-右-上) → R = [1,0,0, 0,-1,0, 0,0,-1]
+            #      两者坐标系完全对齐（前-左-上）→ R = 单位阵
+            extrinsic_T: [ 0.0000, 0.0000, -0.0455]
+            extrinsic_R: [ 1.0000, 0.0000, 0.0000,
+                           0.0000, 1.0000, 0.0000,
+                           0.0000, 0.0000, 1.0000]
+
+        publish:
+            path_en:  false
+            scan_publish_en:  true       # false: close all the point cloud output
+            dense_publish_en: false      # ★ 存图时用降采样点累积：true 会用全分辨率点（100 秒 bag ≈ 1800 万点 → 1GB+ 内存）
+            scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+            map_en: true                 # ★ 必须为 true！累积地图（pcl_wait_pub）的代码在 publish_map() 里，
+                                         #   只有 map_en=true 才会累积并发布到 /Laser_map；
+                                         #   否则 /map_save 会因为"点云为空"而崩溃（实测 pcl::IOException）
+
+        pcd_save:
+            pcd_save_en: true            # ★ 已打开：配合 `ros2 service call /map_save ...` 写出 PCD
+            interval: -1                 # how many LiDAR frames saved in each pcd file;
+                                        # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.

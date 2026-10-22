@@ -1,0 +1,38 @@
+# ROS 2 Build directories
+build/
+install/
+log/
+Log/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled binaries and libraries
+tools/test_global_reloc
+tools/offline_loc_test
+*.so
+*.a
+*.o
+
+# Point cloud, map, and dataset files
+*.pcd
+*.bin
+*.bag
+*.db3
+
+# Compressed archives
+*.tar.gz
+*.tgz
+*.zip
+
+# Large documentation media
+src/FAST_LIO/doc/
+src/FAST_LIO/PCD/
+src/FAST_LIO/Log/
+src/FAST_LIO/log/
+
+# IDE configs
+.vscode/
+.idea/

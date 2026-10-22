@@ -1,0 +1,23 @@
+# VLP-16 + FAST-LIO 适配配置
+#
+# ★ ROS 2 的参数 YAML 必须以  节点名/ros__parameters  开头，
+#   不能在顶层直接写 initialpose: [...]（作者原版 loc_param_g1.yaml 就是错的，
+#   在 Humble 下会报 "Sequences can only be values and not keys in params"）。
+#   /**  表示对所有节点生效。
+#
+# initialpose: [x, y, z, roll, pitch, yaw]，位置单位 m，角度单位 度
+#   含义：装置启动那一刻它在地图坐标系里的位姿（粗初值即可，ICP 会自己精配准）
+#   容忍范围约 ±0.5 m / ±20°
+#     1) 从建图起点原样启动     -> [0, 0, 0, 0, 0, 0]
+#     2) 放在别处但知道大致坐标 -> [x, y, z, 0, 0, yaw]（z 填 IMU 离地高度）
+#     3) 运行时再改             -> 往 /initialpose 发 PoseWithCovarianceStamped
+/**:
+  ros__parameters:
+    initialpose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    # odom->map 卡尔曼滤波噪声：[过程噪声, 量测噪声]
+    #   量测噪声小 -> 更信任 ICP（抖）；大 -> 更平滑但迟钝
+    kf_baselink2map:
+      x: [0.001, 0.002]
+      y: [0.001, 0.005]
+      z: [0.00001, 0.04]

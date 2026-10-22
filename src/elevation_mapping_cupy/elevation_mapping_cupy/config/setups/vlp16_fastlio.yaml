@@ -1,0 +1,55 @@
+/elevation_mapping_node:
+  ros__parameters:
+    #### 坐标系配置 (配合 FAST-LIO) ########
+    map_frame: 'camera_init'             # FAST-LIO 的世界/里程计坐标系
+    base_frame: 'body'                   # 机器人本体坐标系 (IMU)
+    corrected_map_frame: 'camera_init'
+
+    #### 地图几何参数 ########
+    resolution: 0.04                     # 网格分辨率: 4cm (精细地形)
+    map_length: 8.0                      # 随动地图大小: 8.0m x 8.0m 正方形
+    
+    #### 传感器噪声与滤波模型 ########
+    sensor_noise_factor: 0.02            # 测距噪声比例因子
+    mahalanobis_thresh: 2.0              # 马氏距离去噪阈值
+    outlier_variance: 0.01
+    max_variance: 10.0                   # 最大不确定度上限
+    initial_variance: 100.0              # 未观测网格的初始方差
+    initialized_variance: 5.0            # 初次观测到的方差
+    time_variance: 0.0001                # 随时间的方差膨胀量
+
+    dilation_size: 1                     # 膨胀核尺寸 (调小以锐化台阶边缘)
+    min_valid_distance: 0.3              # 盲区过滤: 30cm 以内的点滤除
+    max_height_range: 0.25               # ★ 仅保留传感器高度+25cm以下的地表点，彻底切除墙壁/桌面/天花板！
+
+    #### 功能开关 ########
+    enable_visibility_cleanup: true      # 开启视线清除机制 (动态障碍物离开后自动抹平)
+    enable_edge_sharpen: true            # 开启边缘锐化 (让台阶边缘更清晰)
+    enable_drift_compensation: false     # 纯 FAST-LIO 自身精度高，关闭额外的几何漂移补偿
+    enable_overlap_clearance: true
+    enable_pointcloud_publishing: false
+    enable_drift_corrected_TF_publishing: false
+
+    #### 地面初始化配置 ########
+    use_initializer_at_start: true       # 启动时自动将车身周围 1m 初始化为平坦地面
+    initialize_method: 'linear'
+    initialize_frame_id: ['body']
+    initialize_tf_offset: [0.0]
+    initialize_tf_grid_size: 1.0
+
+    #### 输入传感器配置 (Subscribers) ########
+    subscribers:
+      lidar:
+        topic_name: '/cloud_registered_body'  # ★ 使用 body 坐标系去畸变点云，配合实时位姿与动态射线清除
+        data_type: pointcloud
+
+    #### 发布高程图配置 (Publishers) ########
+    publishers:
+      elevation_map_raw:
+        layers: ['elevation', 'variance', 'normal_x', 'normal_y', 'normal_z']
+        basic_layers: ['elevation']
+        fps: 10.0                        # 10Hz 实时输出
+      elevation_map_filter:
+        layers: ['min_filter', 'smooth', 'elevation']
+        basic_layers: ['min_filter', 'smooth']
+        fps: 5.0
