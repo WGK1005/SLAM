@@ -58,7 +58,8 @@ class RelocRvizPublisher(Node):
         self.pub_pose = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
         self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
 
-        map_pcd = "/home/wgk/maps/map_1021_1050.pcd"
+        home = os.path.expanduser('~')
+        map_pcd = os.path.join(home, "maps/map_1021_1050.pcd")
         coarse_pcd = "/tmp/reloc_eval/scan_coarse.pcd"
         fine_pcd = "/tmp/reloc_eval/scan_fine.pcd"
         info_file = "/tmp/reloc_eval/info.txt"

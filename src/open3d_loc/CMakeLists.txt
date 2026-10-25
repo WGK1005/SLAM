@@ -38,10 +38,20 @@ find_package(PCL REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 
-# Set Open3D path - modify this to your installation path
-set(Open3D_DIR "/home/wgk/open3d141/open3d141/lib/cmake/Open3D")
-
-# set(Open3D_DIR "/home/unitree/open3d141_arm/open3d141/lib/cmake/Open3D")
+# Set Open3D path - auto detect for x86_64 vs aarch64 (Orange Pi)
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+    if(EXISTS "/home/orangepi/open3d141_arm/open3d141/lib/cmake/Open3D")
+        set(Open3D_DIR "/home/orangepi/open3d141_arm/open3d141/lib/cmake/Open3D")
+    elseif(EXISTS "$ENV{HOME}/open3d141_arm/open3d141/lib/cmake/Open3D")
+        set(Open3D_DIR "$ENV{HOME}/open3d141_arm/open3d141/lib/cmake/Open3D")
+    endif()
+else()
+    if(EXISTS "$ENV{HOME}/thirdparty/open3d141/open3d141/lib/cmake/Open3D")
+        set(Open3D_DIR "$ENV{HOME}/thirdparty/open3d141/open3d141/lib/cmake/Open3D")
+    elseif(EXISTS "/home/wgk/open3d141/open3d141/lib/cmake/Open3D")
+        set(Open3D_DIR "/home/wgk/open3d141/open3d141/lib/cmake/Open3D")
+    endif()
+endif()
 find_package(Open3D REQUIRED)
 
 # Fix Open3D libraries - remove problematic .so files
@@ -162,6 +172,12 @@ ament_target_dependencies(auto_global_reloc_node
         tf2_eigen
 )
 
+# Build test_global_reloc (独立离线自定位测试工具，统一链接 open3d_registration 核心库)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/test_global_reloc.cpp")
+    add_executable(test_global_reloc "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/test_global_reloc.cpp")
+    target_link_libraries(test_global_reloc ${Open3D_LIBRARIES} open3d_registration)
+endif()
+
 # Install targets
 install(TARGETS
         open3d_registration
@@ -174,6 +190,7 @@ install(TARGETS
 install(TARGETS
         global_localization_node
         auto_global_reloc_node
+        test_global_reloc
         DESTINATION lib/${PROJECT_NAME}
 )
 
