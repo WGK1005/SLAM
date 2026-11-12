@@ -14,7 +14,7 @@ if [ -f "$WS_DIR/install/setup.bash" ]; then
     source "$WS_DIR/install/setup.bash"
 fi
 
-MAP_PATH="/home/wgk/maps/map_1021_1050.pcd"
+MAP_PATH="${HOME}/maps/map_1021_1050.pcd"
 SCAN_TOPIC="/velodyne_points"
 MODE="ros" # 'ros' 或 'offline'
 OPEN_RVIZ=false
@@ -76,7 +76,11 @@ trap cleanup EXIT INT TERM
 
 if [ "$MODE" == "offline" ]; then
     echo -e "\033[1;36m[模式: 纯离线单帧自定位测试]\033[0m"
-    "$WS_DIR/tools/test_global_reloc" --map "$MAP_PATH" "${EXTRA_ARGS[@]}"
+    TEST_BIN="$WS_DIR/install/open3d_loc/lib/open3d_loc/test_global_reloc"
+    if [ ! -f "$TEST_BIN" ]; then
+        TEST_BIN="$WS_DIR/tools/test_global_reloc"
+    fi
+    "$TEST_BIN" --map "$MAP_PATH" "${EXTRA_ARGS[@]}"
     if [ "$OPEN_RVIZ" = true ]; then
         echo -e "\n📡 \033[1;32m正在向 RViz 广播匹配全流程点云与位姿...\033[0m"
         echo -e "   - ⚪ 白色/灰白点云 : /map (先验地图)"

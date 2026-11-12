@@ -31,11 +31,11 @@
         feature_extract_enable: false
         point_filter_num: 1          # 场景小时用 1 保留全部点（10Hz 下实测实时；香橙派可改 2~4）
         max_iteration: 3
-        filter_size_surf: 0.2        # ★ 原 0.5：拥挤场景下会把一帧压成几十个点，见上面教训
-        filter_size_map: 0.3         # ★ 原 0.5：地图体素同样要减小，否则地图过稀、邻域跨面
+        filter_size_surf: 0.15       # 调细体素以更好地拟合阶梯踏面和踢面
+        filter_size_map: 0.20        # 地图体素
         cube_side_length: 1000.0
         runtime_pos_log_enable: false
-        map_file_path: "/home/wgk/maps/pc_base2.pcd"   # ★ /map_save 服务写出的 PCD（绝对路径）
+        map_file_path: "/home/wgk/maps/stairs_test_03_map.pcd"   # ★ /map_save 服务写出的 PCD（绝对路径）
 
         common:
             lid_topic:  "/velodyne_points_norm"  # ★ 时间戳规范化节点的输出（tools/timestamp_normalizer.py）
@@ -79,7 +79,7 @@
         publish:
             path_en:  false
             scan_publish_en:  true       # false: close all the point cloud output
-            dense_publish_en: false      # ★ 存图时用降采样点累积：true 会用全分辨率点（100 秒 bag ≈ 1800 万点 → 1GB+ 内存）
+            dense_publish_en: true       # ★ 开启全分辨率去畸变点云输出（每帧约 1.7 万点），为高程图提供充足台阶采样
             scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
             map_en: true                 # ★ 必须为 true！累积地图（pcl_wait_pub）的代码在 publish_map() 里，
                                          #   只有 map_en=true 才会累积并发布到 /Laser_map；

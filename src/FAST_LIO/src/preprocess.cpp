@@ -471,8 +471,15 @@ void Preprocess::velodyne_handler(const sensor_msgs::msg::PointCloud2::UniquePtr
 
       if (i % point_filter_num == 0)
       {
-        if (added_pt.x * added_pt.x + added_pt.y * added_pt.y + added_pt.z * added_pt.z > (blind * blind))
+        double range_sq = added_pt.x * added_pt.x + added_pt.y * added_pt.y + added_pt.z * added_pt.z;
+        if (range_sq > (blind * blind))
         {
+          // 彻底滤除操作者人体、手臂、支架及衣物点云：
+          // 操作者手持位于雷达后方 (x < 0.20m) 且距离在 1.15m 范围内
+          if (added_pt.x < 0.20 && range_sq < (1.15 * 1.15))
+          {
+            continue;
+          }
           pl_surf.points.push_back(added_pt);
         }
       }
