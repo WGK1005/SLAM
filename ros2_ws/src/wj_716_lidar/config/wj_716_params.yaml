@@ -1,0 +1,14 @@
+/wj_716_lidar_01:
+  ros__parameters:
+    hostname: "192.168.100.104"
+    port: 2110
+    min_ang: -2.35619449   # -135° in rad
+    max_ang: 2.35619449    # +135° in rad
+    angle_increment: 0.00582
+    frame_id: "laser"
+    time_increment: 0.00006167129
+    range_min: 0.05
+    range_max: 25.0
+    resize: 811
+    scan_topic: "scan"
+    scan_two_echo_topic: "scan_TwoEcho"
