@@ -1,0 +1,1882 @@
+<?xml version="1.0" ?>
+<!-- 2027 足式机器人挑战赛 障碍赛场地 1:1 (由 tools/generate_rc_obstacle_world.py 生成，勿手改) -->
+<sdf version="1.6">
+  <world name="rc_obstacle_2027">
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>7.0 -6.5 9.0 0 0.85 1.5708</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+    <model name="rc_obstacle_field">
+      <static>true</static>
+      <link name="field_floor">
+        <pose>7.0000 3.0000 0.0005 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>14.0000 6.0000 0.0010</size></box></geometry>
+          <material><ambient>0.95 0.85 0.15 1</ambient><diffuse>0.95 0.85 0.15 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="border_line_0">
+        <pose>7.0000 0.0000 0.0015 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>14.0000 0.0500 0.0020</size></box></geometry>
+          <material><ambient>0.10 0.20 0.85 1</ambient><diffuse>0.10 0.20 0.85 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="border_line_1">
+        <pose>7.0000 6.0000 0.0015 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>14.0000 0.0500 0.0020</size></box></geometry>
+          <material><ambient>0.10 0.20 0.85 1</ambient><diffuse>0.10 0.20 0.85 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="border_line_2">
+        <pose>0.0000 3.0000 0.0015 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0500 6.0000 0.0020</size></box></geometry>
+          <material><ambient>0.10 0.20 0.85 1</ambient><diffuse>0.10 0.20 0.85 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="border_line_3">
+        <pose>14.0000 3.0000 0.0015 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0500 6.0000 0.0020</size></box></geometry>
+          <material><ambient>0.10 0.20 0.85 1</ambient><diffuse>0.10 0.20 0.85 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_0">
+        <pose>1.6200 5.3750 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>2.0000 0.0300 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>2.0000 0.0300 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_1">
+        <pose>2.6050 4.8900 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0300 1.0000 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0300 1.0000 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_2">
+        <pose>2.1050 4.4050 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>1.0300 0.0300 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>1.0300 0.0300 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_3">
+        <pose>1.6050 3.9050 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0300 1.0300 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0300 1.0300 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_4">
+        <pose>1.1200 3.4050 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>1.0000 0.0300 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>1.0000 0.0300 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_rail_5">
+        <pose>0.6350 4.3900 0.0750 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0300 2.0000 0.1500</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0300 2.0000 0.1500</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_bricks">
+        <pose>1.1200 4.3900 0.0400 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.9700 1.9700 0.0800</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.9700 1.9700 0.0800</size></box></geometry>
+          <material><ambient>0.65 0.30 0.20 1</ambient><diffuse>0.65 0.30 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="brick_pit_bark">
+        <pose>2.1200 4.8900 0.0300 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.9700 0.9700 0.0600</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.9700 0.9700 0.0600</size></box></geometry>
+          <material><ambient>0.40 0.25 0.12 1</ambient><diffuse>0.40 0.25 0.12 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="single_plank">
+        <pose>5.4800 4.8800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>3.0000 0.4000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>3.0000 0.4000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="high_wall">
+        <pose>8.5000 4.8800 0.1500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0800 0.8000 0.3000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0800 0.8000 0.3000</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_platform_L">
+        <pose>10.3000 4.8800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.8000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.8000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_platform_R">
+        <pose>13.0000 4.8800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.8000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.8000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_00">
+        <pose>10.9000 5.0800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_01">
+        <pose>11.5000 5.0800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_02">
+        <pose>12.1000 5.0800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_10">
+        <pose>11.2000 4.6800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_11">
+        <pose>11.8000 4.6800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="plum_piles_block_12">
+        <pose>12.4000 4.6800 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.2000 0.2000 0.1000</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="gully_combo_platform_start2">
+        <pose>1.1000 1.0000 0.1800 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.8000 0.3600</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.8000 0.3600</size></box></geometry>
+          <material><ambient>0.95 0.85 0.15 1</ambient><diffuse>0.95 0.85 0.15 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="gully_combo_platform_step">
+        <pose>2.2600 1.0000 0.1800 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.8000 0.3600</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.8000 0.3600</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="gully_combo_step_0">
+        <pose>2.8200 1.0000 0.1200 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.3200 0.8000 0.2400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.3200 0.8000 0.2400</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="gully_combo_step_1">
+        <pose>3.1400 1.0000 0.0600 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.3200 0.8000 0.1200</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.3200 0.8000 0.1200</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="gully_combo_slope">
+        <pose>1.1000 1.8877 0.1612 -0.34907 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 1.0526 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 1.0526 0.0400</size></box></geometry>
+          <material><ambient>0.45 0.75 0.30 1</ambient><diffuse>0.45 0.75 0.30 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_2_mark_0">
+        <pose>1.1000 1.3800 0.3620 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.7600 0.0300 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_2_mark_1">
+        <pose>1.1000 0.6200 0.3620 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.7600 0.0300 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_2_mark_2">
+        <pose>1.4800 1.0000 0.3620 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0300 0.7600 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_2_mark_3">
+        <pose>0.7200 1.0000 0.3620 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0300 0.7600 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s0">
+        <pose>5.0950 0.8750 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s1">
+        <pose>5.0783 0.9592 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s2">
+        <pose>5.0306 1.0306 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s3">
+        <pose>4.9592 1.0783 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s4">
+        <pose>4.8750 1.0950 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s5">
+        <pose>4.7908 1.0783 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s6">
+        <pose>4.7194 1.0306 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s7">
+        <pose>4.6717 0.9592 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s8">
+        <pose>4.6550 0.8750 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s9">
+        <pose>4.6717 0.7908 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s10">
+        <pose>4.7194 0.7194 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s11">
+        <pose>4.7908 0.6717 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s12">
+        <pose>4.8750 0.6550 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s13">
+        <pose>4.9592 0.6717 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s14">
+        <pose>5.0306 0.7194 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t00_s15">
+        <pose>5.0783 0.7908 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s0">
+        <pose>5.0950 1.4250 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s1">
+        <pose>5.0783 1.5092 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s2">
+        <pose>5.0306 1.5806 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s3">
+        <pose>4.9592 1.6283 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s4">
+        <pose>4.8750 1.6450 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s5">
+        <pose>4.7908 1.6283 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s6">
+        <pose>4.7194 1.5806 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s7">
+        <pose>4.6717 1.5092 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s8">
+        <pose>4.6550 1.4250 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s9">
+        <pose>4.6717 1.3408 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s10">
+        <pose>4.7194 1.2694 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s11">
+        <pose>4.7908 1.2217 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s12">
+        <pose>4.8750 1.2050 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s13">
+        <pose>4.9592 1.2217 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s14">
+        <pose>5.0306 1.2694 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t01_s15">
+        <pose>5.0783 1.3408 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s0">
+        <pose>5.6450 0.8750 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s1">
+        <pose>5.6283 0.9592 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s2">
+        <pose>5.5806 1.0306 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s3">
+        <pose>5.5092 1.0783 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s4">
+        <pose>5.4250 1.0950 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s5">
+        <pose>5.3408 1.0783 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s6">
+        <pose>5.2694 1.0306 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s7">
+        <pose>5.2217 0.9592 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s8">
+        <pose>5.2050 0.8750 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s9">
+        <pose>5.2217 0.7908 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s10">
+        <pose>5.2694 0.7194 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s11">
+        <pose>5.3408 0.6717 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s12">
+        <pose>5.4250 0.6550 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s13">
+        <pose>5.5092 0.6717 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s14">
+        <pose>5.5806 0.7194 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t10_s15">
+        <pose>5.6283 0.7908 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s0">
+        <pose>5.6450 1.4250 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s1">
+        <pose>5.6283 1.5092 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s2">
+        <pose>5.5806 1.5806 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s3">
+        <pose>5.5092 1.6283 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s4">
+        <pose>5.4250 1.6450 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s5">
+        <pose>5.3408 1.6283 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s6">
+        <pose>5.2694 1.5806 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s7">
+        <pose>5.2217 1.5092 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s8">
+        <pose>5.2050 1.4250 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s9">
+        <pose>5.2217 1.3408 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s10">
+        <pose>5.2694 1.2694 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s11">
+        <pose>5.3408 1.2217 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s12">
+        <pose>5.4250 1.2050 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s13">
+        <pose>5.5092 1.2217 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s14">
+        <pose>5.5806 1.2694 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t11_s15">
+        <pose>5.6283 1.3408 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s0">
+        <pose>6.1950 0.8750 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s1">
+        <pose>6.1783 0.9592 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s2">
+        <pose>6.1306 1.0306 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s3">
+        <pose>6.0592 1.0783 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s4">
+        <pose>5.9750 1.0950 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s5">
+        <pose>5.8908 1.0783 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s6">
+        <pose>5.8194 1.0306 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s7">
+        <pose>5.7717 0.9592 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s8">
+        <pose>5.7550 0.8750 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s9">
+        <pose>5.7717 0.7908 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s10">
+        <pose>5.8194 0.7194 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s11">
+        <pose>5.8908 0.6717 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s12">
+        <pose>5.9750 0.6550 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s13">
+        <pose>6.0592 0.6717 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s14">
+        <pose>6.1306 0.7194 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t20_s15">
+        <pose>6.1783 0.7908 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s0">
+        <pose>6.1950 1.4250 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s1">
+        <pose>6.1783 1.5092 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s2">
+        <pose>6.1306 1.5806 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s3">
+        <pose>6.0592 1.6283 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s4">
+        <pose>5.9750 1.6450 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s5">
+        <pose>5.8908 1.6283 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s6">
+        <pose>5.8194 1.5806 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s7">
+        <pose>5.7717 1.5092 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s8">
+        <pose>5.7550 1.4250 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s9">
+        <pose>5.7717 1.3408 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s10">
+        <pose>5.8194 1.2694 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s11">
+        <pose>5.8908 1.2217 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s12">
+        <pose>5.9750 1.2050 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s13">
+        <pose>6.0592 1.2217 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s14">
+        <pose>6.1306 1.2694 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t21_s15">
+        <pose>6.1783 1.3408 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s0">
+        <pose>6.7450 0.8750 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s1">
+        <pose>6.7283 0.9592 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s2">
+        <pose>6.6806 1.0306 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s3">
+        <pose>6.6092 1.0783 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s4">
+        <pose>6.5250 1.0950 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s5">
+        <pose>6.4408 1.0783 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s6">
+        <pose>6.3694 1.0306 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s7">
+        <pose>6.3217 0.9592 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s8">
+        <pose>6.3050 0.8750 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s9">
+        <pose>6.3217 0.7908 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s10">
+        <pose>6.3694 0.7194 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s11">
+        <pose>6.4408 0.6717 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s12">
+        <pose>6.5250 0.6550 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s13">
+        <pose>6.6092 0.6717 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s14">
+        <pose>6.6806 0.7194 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t30_s15">
+        <pose>6.7283 0.7908 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s0">
+        <pose>6.7450 1.4250 0.0825 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s1">
+        <pose>6.7283 1.5092 0.0825 0.00000 0.00000 0.39270</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s2">
+        <pose>6.6806 1.5806 0.0825 0.00000 0.00000 0.78540</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s3">
+        <pose>6.6092 1.6283 0.0825 0.00000 0.00000 1.17810</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s4">
+        <pose>6.5250 1.6450 0.0825 0.00000 0.00000 1.57080</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s5">
+        <pose>6.4408 1.6283 0.0825 0.00000 0.00000 1.96350</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s6">
+        <pose>6.3694 1.5806 0.0825 0.00000 0.00000 2.35619</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s7">
+        <pose>6.3217 1.5092 0.0825 0.00000 0.00000 2.74889</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s8">
+        <pose>6.3050 1.4250 0.0825 0.00000 0.00000 3.14159</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s9">
+        <pose>6.3217 1.3408 0.0825 0.00000 0.00000 3.53429</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s10">
+        <pose>6.3694 1.2694 0.0825 0.00000 0.00000 3.92699</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s11">
+        <pose>6.4408 1.2217 0.0825 0.00000 0.00000 4.31969</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s12">
+        <pose>6.5250 1.2050 0.0825 0.00000 0.00000 4.71239</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s13">
+        <pose>6.6092 1.2217 0.0825 0.00000 0.00000 5.10509</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s14">
+        <pose>6.6806 1.2694 0.0825 0.00000 0.00000 5.49779</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="tire_array_t31_s15">
+        <pose>6.7283 1.3408 0.0825 0.00000 0.00000 5.89049</pose>
+        <collision name="c"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.1100 0.1094 0.1650</size></box></geometry>
+          <material><ambient>0.06 0.06 0.06 1</ambient><diffuse>0.06 0.06 0.06 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_post_-1-1">
+        <pose>8.0800 0.7300 0.1650 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_post_-11">
+        <pose>8.0800 1.5700 0.1650 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_post_1-1">
+        <pose>8.8400 0.7300 0.1650 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_post_11">
+        <pose>8.8400 1.5700 0.1650 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.0400 0.3300</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_rail_-1">
+        <pose>8.4600 0.7300 0.3100 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.0400 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.0400 0.0400</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_rail_1">
+        <pose>8.4600 1.5700 0.3100 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.8000 0.0400 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.8000 0.0400 0.0400</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_cross_0">
+        <pose>8.0800 1.1500 0.3100 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_cross_1">
+        <pose>8.4600 1.1500 0.3100 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="height_limit_frame_cross_2">
+        <pose>8.8400 1.1500 0.3100 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><box><size>0.0400 0.8800 0.0400</size></box></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_0">
+        <pose>10.2500 1.0500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_1">
+        <pose>11.1500 1.0500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_2">
+        <pose>12.0500 1.0500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_3">
+        <pose>12.9500 1.0500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_4">
+        <pose>12.9500 1.9500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_pole_5">
+        <pose>12.9500 2.8500 0.0500 0.00000 0.00000 0.00000</pose>
+        <collision name="c"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="v"><geometry><cylinder><radius>0.0500</radius><length>0.1000</length></cylinder></geometry>
+          <material><ambient>0.20 0.55 0.20 1</ambient><diffuse>0.20 0.55 0.20 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_0">
+        <pose>10.1000 1.0500 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_1">
+        <pose>10.0886 1.1074 0.0020 0.00000 0.00000 0.39270</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_2">
+        <pose>10.0561 1.1561 0.0020 0.00000 0.00000 0.78540</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_3">
+        <pose>10.0074 1.1886 0.0020 0.00000 0.00000 1.17810</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_4">
+        <pose>9.9500 1.2000 0.0020 0.00000 0.00000 1.57080</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_5">
+        <pose>9.8926 1.1886 0.0020 0.00000 0.00000 1.96350</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_6">
+        <pose>9.8439 1.1561 0.0020 0.00000 0.00000 2.35619</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_7">
+        <pose>9.8114 1.1074 0.0020 0.00000 0.00000 2.74889</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_8">
+        <pose>9.8000 1.0500 0.0020 0.00000 0.00000 3.14159</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_9">
+        <pose>9.8114 0.9926 0.0020 0.00000 0.00000 3.53429</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_10">
+        <pose>9.8439 0.9439 0.0020 0.00000 0.00000 3.92699</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_11">
+        <pose>9.8926 0.9114 0.0020 0.00000 0.00000 4.31969</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_12">
+        <pose>9.9500 0.9000 0.0020 0.00000 0.00000 4.71239</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_13">
+        <pose>10.0074 0.9114 0.0020 0.00000 0.00000 5.10509</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_14">
+        <pose>10.0561 0.9439 0.0020 0.00000 0.00000 5.49779</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_0_15">
+        <pose>10.0886 0.9926 0.0020 0.00000 0.00000 5.89049</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_0">
+        <pose>13.4000 0.7500 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_1">
+        <pose>13.3886 0.8074 0.0020 0.00000 0.00000 0.39270</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_2">
+        <pose>13.3561 0.8561 0.0020 0.00000 0.00000 0.78540</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_3">
+        <pose>13.3074 0.8886 0.0020 0.00000 0.00000 1.17810</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_4">
+        <pose>13.2500 0.9000 0.0020 0.00000 0.00000 1.57080</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_5">
+        <pose>13.1926 0.8886 0.0020 0.00000 0.00000 1.96350</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_6">
+        <pose>13.1439 0.8561 0.0020 0.00000 0.00000 2.35619</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_7">
+        <pose>13.1114 0.8074 0.0020 0.00000 0.00000 2.74889</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_8">
+        <pose>13.1000 0.7500 0.0020 0.00000 0.00000 3.14159</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_9">
+        <pose>13.1114 0.6926 0.0020 0.00000 0.00000 3.53429</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_10">
+        <pose>13.1439 0.6439 0.0020 0.00000 0.00000 3.92699</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_11">
+        <pose>13.1926 0.6114 0.0020 0.00000 0.00000 4.31969</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_12">
+        <pose>13.2500 0.6000 0.0020 0.00000 0.00000 4.71239</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_13">
+        <pose>13.3074 0.6114 0.0020 0.00000 0.00000 5.10509</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_14">
+        <pose>13.3561 0.6439 0.0020 0.00000 0.00000 5.49779</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_1_15">
+        <pose>13.3886 0.6926 0.0020 0.00000 0.00000 5.89049</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_0">
+        <pose>13.1000 3.1500 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_1">
+        <pose>13.0886 3.2074 0.0020 0.00000 0.00000 0.39270</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_2">
+        <pose>13.0561 3.2561 0.0020 0.00000 0.00000 0.78540</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_3">
+        <pose>13.0074 3.2886 0.0020 0.00000 0.00000 1.17810</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_4">
+        <pose>12.9500 3.3000 0.0020 0.00000 0.00000 1.57080</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_5">
+        <pose>12.8926 3.2886 0.0020 0.00000 0.00000 1.96350</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_6">
+        <pose>12.8439 3.2561 0.0020 0.00000 0.00000 2.35619</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_7">
+        <pose>12.8114 3.2074 0.0020 0.00000 0.00000 2.74889</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_8">
+        <pose>12.8000 3.1500 0.0020 0.00000 0.00000 3.14159</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_9">
+        <pose>12.8114 3.0926 0.0020 0.00000 0.00000 3.53429</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_10">
+        <pose>12.8439 3.0439 0.0020 0.00000 0.00000 3.92699</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_11">
+        <pose>12.8926 3.0114 0.0020 0.00000 0.00000 4.31969</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_12">
+        <pose>12.9500 3.0000 0.0020 0.00000 0.00000 4.71239</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_13">
+        <pose>13.0074 3.0114 0.0020 0.00000 0.00000 5.10509</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_14">
+        <pose>13.0561 3.0439 0.0020 0.00000 0.00000 5.49779</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="slalom_must_reach_2_15">
+        <pose>13.0886 3.0926 0.0020 0.00000 0.00000 5.89049</pose>
+        <visual name="v"><geometry><box><size>0.0200 0.0597 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_1_mark_0">
+        <pose>7.0000 3.4000 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.8000 0.0300 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_1_mark_1">
+        <pose>7.0000 2.6000 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.8000 0.0300 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_1_mark_2">
+        <pose>7.4000 3.0000 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0300 0.8000 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+      <link name="start_zone_1_mark_3">
+        <pose>6.6000 3.0000 0.0020 0.00000 0.00000 0.00000</pose>
+        <visual name="v"><geometry><box><size>0.0300 0.8000 0.0020</size></box></geometry>
+          <material><ambient>0.90 0.10 0.10 1</ambient><diffuse>0.90 0.10 0.10 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

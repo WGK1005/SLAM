@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>scu_tdt_v1</name>
+  <version>1.0.0</version>
+  <description>SCU-TDT-V1: 融合 TDT 势场 A* + Minimum Snap 方形安全走廊优化 + SCURM 智能自由空间脱困的决策规划组件 (含 RMUC 2025 原版演示、Gazebo 11 仿真与 VLP-16 + HI12 实机适配)</description>
+  <maintainer email="wgk@todo.todo">wgk</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>visualization_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

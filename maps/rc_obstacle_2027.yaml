@@ -1,0 +1,9 @@
+image: rc_obstacle_2027.pgm
+mode: trinary
+resolution: 0.05
+origin: [0.0, 0.0, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25
+# 2027 足式机器人挑战赛 障碍赛 14m x 6m；原点为场地左下角
+# 注意: PGM 第 0 行对应 y=0 (与 SCU-TDT-V1 规划器约定一致，与 nav2 map_server 上下相反)

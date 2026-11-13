@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<!--
+  宇树 Unitree Go2 四足机器人 (1:1 外形尺寸) + VLP-16 16线激光雷达 + 超核 HI12 IMU 支架总成
+  适配 SCU-TDT-V1 Gazebo 11 仿真与 RViz2 可视化
+
+  关键物理尺寸 (按 Unitree Go2 官方参数 + 你的 fast_lio/config/velodyne.yaml 实测外参)：
+    - 站立参考高度 : base_link 在地面 z=0，机身躯干中心在 z=0.32m (蹲姿可降至 0.16m 以过 290mm 限高架)
+    - 躯干尺寸     : 长 0.376m x 宽 0.190m x 高 0.114m (整机长 ~0.70m, 足端左右跨距 0.30m)
+    - 四足尺寸     : 大腿 0.213m, 小腿 0.213m, 球形足端直径 44mm (满足规则 <=80mm 要求)
+    - 雷达支架总成 : 安装于躯干前上方，HI12 IMU 位于 velodyne 下方 45.5mm (对应 extrinsic_T=[0,0,-0.0455])
+-->
+<robot name="unitree_go2_vlp16" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ==================== 材质定义 ==================== -->
+  <material name="go2_dark_grey"><color rgba="0.22 0.24 0.27 1.0"/></material>
+  <material name="go2_silver"><color rgba="0.72 0.75 0.78 1.0"/></material>
+  <material name="go2_black"><color rgba="0.10 0.10 0.12 1.0"/></material>
+  <material name="go2_accent"><color rgba="0.95 0.55 0.10 1.0"/></material>
+  <material name="imu_green"><color rgba="0.10 0.80 0.30 1.0"/></material>
+  <material name="lidar_blue"><color rgba="0.15 0.45 0.85 1.0"/></material>
+
+  <!-- ==================== 1. 地面投影基准系 base_link (驱动与规划中心) ==================== -->
+  <link name="base_link">
+    <!-- 躯干主壳体 (中心高 z=0.32m) -->
+    <visual name="trunk_body">
+      <origin xyz="0.0 0.0 0.32" rpy="0 0 0"/>
+      <geometry><box size="0.376 0.190 0.114"/></geometry>
+      <material name="go2_dark_grey"/>
+    </visual>
+    <!-- 机头激光/视觉头罩 (前伸斜面感) -->
+    <visual name="head_snout">
+      <origin xyz="0.215 0.0 0.33" rpy="0 0.25 0"/>
+      <geometry><box size="0.095 0.130 0.090"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <!-- 机头环形灯带标识 -->
+    <visual name="head_visor">
+      <origin xyz="0.262 0.0 0.33" rpy="0 0.25 0"/>
+      <geometry><box size="0.012 0.105 0.055"/></geometry>
+      <material name="go2_accent"/>
+    </visual>
+    <!-- 背部电池仓盖 -->
+    <visual name="back_cover">
+      <origin xyz="-0.02 0.0 0.382" rpy="0 0 0"/>
+      <geometry><box size="0.26 0.15 0.016"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+
+    <!-- 四条腿 (站立姿态: 前后髋距 0.3868m, 左右足距 0.30m) -->
+    <!-- ==================== 左前腿 FL ==================== -->
+    <visual name="fl_hip">
+      <origin xyz="0.1934 0.115 0.32" rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.070"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <visual name="fl_thigh">
+      <origin xyz="0.160 0.150 0.235" rpy="0 0.42 0"/>
+      <geometry><box size="0.042 0.034 0.200"/></geometry>
+      <material name="go2_dark_grey"/>
+    </visual>
+    <visual name="fl_calf">
+      <origin xyz="0.165 0.150 0.095" rpy="0 -0.38 0"/>
+      <geometry><cylinder radius="0.014" length="0.185"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+    <visual name="fl_foot">
+      <origin xyz="0.193 0.150 0.022" rpy="0 0 0"/>
+      <geometry><sphere radius="0.022"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+
+    <!-- ==================== 右前腿 FR ==================== -->
+    <visual name="fr_hip">
+      <origin xyz="0.1934 -0.115 0.32" rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.070"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <visual name="fr_thigh">
+      <origin xyz="0.160 -0.150 0.235" rpy="0 0.42 0"/>
+      <geometry><box size="0.042 0.034 0.200"/></geometry>
+      <material name="go2_dark_grey"/>
+    </visual>
+    <visual name="fr_calf">
+      <origin xyz="0.165 -0.150 0.095" rpy="0 -0.38 0"/>
+      <geometry><cylinder radius="0.014" length="0.185"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+    <visual name="fr_foot">
+      <origin xyz="0.193 -0.150 0.022" rpy="0 0 0"/>
+      <geometry><sphere radius="0.022"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+
+    <!-- ==================== 左后腿 RL ==================== -->
+    <visual name="rl_hip">
+      <origin xyz="-0.1934 0.115 0.32" rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.070"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <visual name="rl_thigh">
+      <origin xyz="-0.225 0.150 0.235" rpy="0 0.42 0"/>
+      <geometry><box size="0.042 0.034 0.200"/></geometry>
+      <material name="go2_dark_grey"/>
+    </visual>
+    <visual name="rl_calf">
+      <origin xyz="-0.220 0.150 0.095" rpy="0 -0.38 0"/>
+      <geometry><cylinder radius="0.014" length="0.185"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+    <visual name="rl_foot">
+      <origin xyz="-0.193 0.150 0.022" rpy="0 0 0"/>
+      <geometry><sphere radius="0.022"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+
+    <!-- ==================== 右后腿 RR ==================== -->
+    <visual name="rr_hip">
+      <origin xyz="-0.1934 -0.115 0.32" rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.038" length="0.070"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <visual name="rr_thigh">
+      <origin xyz="-0.225 -0.150 0.235" rpy="0 0.42 0"/>
+      <geometry><box size="0.042 0.034 0.200"/></geometry>
+      <material name="go2_dark_grey"/>
+    </visual>
+    <visual name="rr_calf">
+      <origin xyz="-0.220 -0.150 0.095" rpy="0 -0.38 0"/>
+      <geometry><cylinder radius="0.014" length="0.185"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+    <visual name="rr_foot">
+      <origin xyz="-0.193 -0.150 0.022" rpy="0 0 0"/>
+      <geometry><sphere radius="0.022"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+
+    <!-- ==================== 雷达铝型材支架 (安装于 Go2 背部前段 x=0.08m) ==================== -->
+    <visual name="lidar_mount_plate">
+      <origin xyz="0.08 0.0 0.395" rpy="0 0 0"/>
+      <geometry><box size="0.11 0.10 0.010"/></geometry>
+      <material name="go2_black"/>
+    </visual>
+    <visual name="lidar_riser_post_l">
+      <origin xyz="0.08 0.038 0.425" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.008" length="0.055"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <visual name="lidar_riser_post_r">
+      <origin xyz="0.08 -0.038 0.425" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.008" length="0.055"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+
+    <!-- 碰撞体：采用底部圆滑胶囊/圆柱包络，便于 Gazebo 平面移动与上台 -->
+    <collision>
+      <origin xyz="0.0 0.0 0.18" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.24" length="0.34"/></geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0.0 0.0 0.26" rpy="0 0 0"/>
+      <mass value="15.0"/>
+      <inertia ixx="0.24" ixy="0.0" ixz="0.0" iyy="0.42" iyz="0.0" izz="0.48"/>
+    </inertial>
+  </link>
+
+  <!-- ==================== 2. 超核电子 HI12 9轴 IMU (imu_link) ==================== -->
+  <!-- 位于雷达正下方 45.5mm (严格对应 velodyne.yaml 中 extrinsic_T = [0, 0, -0.0455]) -->
+  <link name="imu_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.042 0.042 0.018"/></geometry>
+      <material name="imu_green"/>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.08 0.0 0.4145" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ==================== 3. Velodyne VLP-16 16线 3D 激光雷达 (velodyne) ==================== -->
+  <link name="velodyne">
+    <!-- 底座与金属上盖 -->
+    <visual name="vlp16_base">
+      <origin xyz="0 0 -0.022" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.0516" length="0.028"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <!-- 光学旋转视窗 -->
+    <visual name="vlp16_window">
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.050" length="0.032"/></geometry>
+      <material name="lidar_blue"/>
+    </visual>
+    <visual name="vlp16_top">
+      <origin xyz="0 0 0.022" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.0516" length="0.020"/></geometry>
+      <material name="go2_silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.052" length="0.072"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.83"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="velodyne_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="velodyne"/>
+    <origin xyz="0.08 0.0 0.460" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ==================== Gazebo 材质与传感器插件 ==================== -->
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+  <gazebo reference="imu_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="velodyne">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <!-- 全向运动控制插件 (订阅 /cmd_vel, 发布 /odom 及 odom->base_link TF) -->
+  <gazebo>
+    <plugin name="go2_planar_move" filename="libgazebo_ros_planar_move.so">
+      <ros>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+      <update_rate>50.0</update_rate>
+      <publish_rate>50.0</publish_rate>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- HI12 IMU 传感器插件 (200Hz, 发布 /imu/data) -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="hi12_imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>200</update_rate>
+      <plugin name="hi12_imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <remapping>~/out:=imu/data</remapping>
+        </ros>
+        <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- VLP-16 16线 3D 激光雷达插件 (10Hz, 发布 /velodyne_points) -->
+  <gazebo reference="velodyne">
+    <sensor name="vlp16_sensor" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159265</min_angle>
+            <max_angle>3.14159265</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.261799</min_angle>
+            <max_angle>0.261799</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>25.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name="gazebo_ros_vlp16" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=velodyne_points</remapping>
+        </ros>
+        <output_type>sensor_msgs/PointCloud2</output_type>
+        <frame_name>velodyne</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
+

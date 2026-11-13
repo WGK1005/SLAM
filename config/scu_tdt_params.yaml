@@ -1,0 +1,26 @@
+# ==============================================================================
+#  SCU-TDT-V1 决策规划与轨迹优化参数配置 (适配 VLP-16 + 超核 HI12 + 香橙派 4 Pro)
+# ==============================================================================
+scu_tdt_nav_node:
+  ros__parameters:
+    # 1. 先验地图参数 (由 /home/wgk/maps/map_1021_1050.pcd 自动转换生成)
+    pgm_map_path: "/home/wgk/decision_planning/SCU-TDT-V1/maps/lab_map_1021.pgm"
+    resolution: 0.05          # 栅格分辨率 5cm
+    origin_x: -7.50           # 实验室全局坐标系 X 原点 (m)
+    origin_y: -2.50           # 实验室全局坐标系 Y 原点 (m)
+    z_floor: -0.470           # 实测地面高度基准 (m)
+
+    # 2. VLP-16 实时动态避障掩码层参数
+    obs_min_h: 0.22           # 截取高于地面 22cm 的实验台/人体/箱子障碍物
+    obs_max_h: 1.85           # 截取低于 1.85m 的室内有效障碍物
+    dynamic_mask_duration: 1.0 # 动态障碍物掩码保留时间 (s)
+
+    # 3. 底盘几何与动力学参数
+    robot_radius: 0.22        # 机器人安全碰撞半径 (m)
+    max_speed: 1.20           # 室内最大巡航线速度 (m/s)
+    max_acc: 0.80             # 最大线加速度 (m/s^2)
+    max_omega: 1.50           # 最大转向角速度 (rad/s)
+    max_corridor_range: 1.40  # 方形安全飞行走廊 (Square SFC) 最大膨胀范围 (m)
+    lookahead_dist: 0.45      # 轨迹前馈+纯跟踪前视距离 (m)
+    omni_mode: false          # false: 差速/阿克曼底盘; true: 全向轮/麦轮/哨兵小陀螺底盘
+

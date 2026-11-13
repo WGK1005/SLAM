@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<robot name="scu_sentry_vlp16" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 1. 底盘主刚体 (base_link: 半径 0.22m, 高 0.24m) -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.14" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.22" length="0.20"/>
+      </geometry>
+      <material name="scu_blue">
+        <color rgba="0.12 0.38 0.78 1.0"/>
+      </material>
+    </visual>
+    <visual name="heading_arrow">
+      <origin xyz="0.16 0 0.25" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.14"/>
+      </geometry>
+      <material name="scu_red">
+        <color rgba="0.90 0.18 0.18 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.14" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.22" length="0.20"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+      <mass value="12.0"/>
+      <inertia ixx="0.18" ixy="0.0" ixz="0.0" iyy="0.18" iyz="0.0" izz="0.28"/>
+    </inertial>
+  </link>
+
+  <!-- 2. 超核电子 HI12 9轴 IMU (imu_link) -->
+  <link name="imu_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.02"/>
+      </geometry>
+      <material name="imu_green">
+        <color rgba="0.1 0.8 0.3 1.0"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0.0 0.25" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 3. Velodyne VLP-16 16线 3D 激光雷达 (velodyne) -->
+  <link name="velodyne">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.052" length="0.072"/>
+      </geometry>
+      <material name="lidar_silver">
+        <color rgba="0.75 0.78 0.82 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.052" length="0.072"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.83"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="velodyne_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="velodyne"/>
+    <origin xyz="0.0 0.0 0.42" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Gazebo 材质与零摩擦滑动设置 -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+  <gazebo reference="velodyne">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- 4. 全向/差速兼容底盘运动控制插件 (订阅 /cmd_vel, 发布 /odom 及 odom->base_link TF) -->
+  <gazebo>
+    <plugin name="scu_sentry_planar_move" filename="libgazebo_ros_planar_move.so">
+      <ros>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+      <update_rate>50.0</update_rate>
+      <publish_rate>50.0</publish_rate>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- 5. HI12 IMU 传感器插件 (发布 /imu/data) -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="hi12_imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <plugin name="hi12_imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <remapping>~/out:=imu/data</remapping>
+        </ros>
+        <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- 6. VLP-16 16线 3D 激光雷达插件 (发布 /velodyne_points PointCloud2) -->
+  <gazebo reference="velodyne">
+    <sensor name="vlp16_sensor" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159265</min_angle>
+            <max_angle>3.14159265</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.261799</min_angle>
+            <max_angle>0.261799</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>25.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name="gazebo_ros_vlp16" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=velodyne_points</remapping>
+        </ros>
+        <output_type>sensor_msgs/PointCloud2</output_type>
+        <frame_name>velodyne</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
+

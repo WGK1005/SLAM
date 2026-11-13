@@ -1,0 +1,9 @@
+image: lab_map_1021.pgm
+resolution: 0.05
+origin: [-7.5, -2.5, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+width: 220
+height: 280
+z_floor: -0.47

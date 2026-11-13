@@ -1,0 +1,17 @@
+# ROS build artifacts
+build/
+install/
+log/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.suo
+
+# Python
+__pycache__/
+*.pyc
+
+# Temporary
+*~
