@@ -1,0 +1,13 @@
+# CRITICAL SECURITY: Never commit private SSH keys!
+keys/
+*.pem
+*.key
+id_*
+
+# Python
+__pycache__/
+*.pyc
+
+# Temporary
+*.tmp
+*.bak
