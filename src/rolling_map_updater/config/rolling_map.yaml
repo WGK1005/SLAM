@@ -1,0 +1,82 @@
+rolling_map_node:
+  ros__parameters:
+    # 只读先验地图路径 (运行时也可通过 --ros-args -p prior_map_path:=... 覆盖)
+    prior_map_path: "/home/wgk/maps/map_1021_1050.pcd"
+    # 手动触发存盘服务时才写出的独立快照路径（绝不会写回原地图）
+    snapshot_export_path: "/tmp/rolling_map_snapshot.pcd"
+
+    # 话题配置（完美衔接 FAST-LIO 与现有 auto_global_reloc_node）
+    odom_topic: "/Odometry"
+    scan_topic: "/cloud_registered_body"
+    initialpose_topic: "/initialpose"
+    map_frame: "map"
+    odom_frame: "camera_init"
+    body_frame: "body"
+
+    # 若启动了 auto_global_reloc_node，则设为 true 等待 /initialpose 交接；
+    # 若直接从建图起点跑，可设为 false
+    wait_for_initialpose: true
+    enable_map_update: true
+    log_every_frame: false            # 设为 true 可在终端打印每一帧的匹配结果与毫米级误差
+    metrics_csv_path: "/tmp/rolling_match_metrics.csv"  # 每帧无损 CSV 指标记录
+    match_min_period_s: 0.20          # 5 Hz 实时滚动配准与更新
+    max_update_omega_rad_s: 1.0       # 急转弯防抖门控：角速度过高时不改地图
+    pose_smooth_alpha: 0.50
+    scan_stack_count: 3               # 里程计运动补偿后的多帧扫描叠加数量 (提升转弯/稀疏帧咬合度)
+
+    # 严格多指标联合验收与限幅滤波参数 (防止走廊/楼梯滑移与幻觉大跳变)
+    accept_min_fit25: 0.52            # 常规 TRACKED 最低 25cm 咬合度
+    accept_min_fit10: 0.45            # 常规 TRACKED 最低 10cm 咬合度
+    accept_min_inlier5: 40.0          # 常规 TRACKED 最低 5cm 内点率 (%)
+    accept_max_p2pl_med_mm: 28.0      # 常规 TRACKED 允许最大点面误差中位数 (mm)
+    accept_max_dpos_m: 0.30           # 常规 TRACKED 允许单次配准最大位移偏移 (m)
+    accept_max_dangle_deg: 10.0       # 常规 TRACKED 允许单次配准最大姿态偏移 (deg)
+    recover_max_dpos_m: 0.85          # Stage-1 RECOVERED 允许最大拉回位移 (m)
+    recover_max_dangle_deg: 20.0      # Stage-1 RECOVERED 允许最大拉回角度 (deg)
+    slip_min_fit25: 0.70              # 紧急 SLIP_RECOVERED 严格 25cm 门槛
+    slip_min_fit10: 0.62              # 紧急 SLIP_RECOVERED 严格 10cm 门槛
+    slip_min_inlier5: 45.0            # 紧急 SLIP_RECOVERED 严格 5cm 内点率门槛 (%)
+    slip_max_p2pl_med_mm: 21.0        # 紧急 SLIP_RECOVERED 严格点面中位误差门槛 (mm)
+    slip_max_dpos_m: 2.00             # 紧急 SLIP_RECOVERED 最大位移 (m)
+    slip_max_dangle_deg: 35.0         # 紧急 SLIP_RECOVERED 最大角度 (deg)
+    slip_min_improve: 0.14            # 必须同时显著提升 25cm 与 10cm 咬合度
+    max_corr_step_m: 0.12             # 常规跟踪每帧 T_map_odom_ 最大位移纠正步长 (m)
+    max_corr_step_deg: 3.0            # 常规跟踪每帧 T_map_odom_ 最大角度纠正步长 (deg)
+    reloc_lost_trigger: 3             # 连续拒收 3 帧触发基于安全锚点+Odom增量的局部重定位
+
+    # 空间哈希滚动窗口参数 (大幅减小算力 + 3D原子防掏空保护)
+    chunk_size: 2.0                   # 空间哈希块边长 2m
+    voxel_size: 0.08                  # 内存地图体素分辨率 8cm
+    active_radius_xy: 12.0            # 随机器狗滚动的活跃子图半径 12m (24m×24m窗口)
+    active_z_down: 4.0
+    active_z_up: 6.0
+    roll_trigger_dist: 1.0            # 每前进 1.0m 触发 O(1) 滚动加载/卸载
+    min_roll_prior_voxels: 300        # 若目标窗口有效先验体素少于此值，拒绝滚动防掏空
+
+    # 两阶段点面特征配准、退化感知投影与毫米级误差评估参数
+    scan_voxel_size: 0.08
+    target_icp_voxel_size: 0.12       # ICP 轻量化目标云分辨率 (评估仍保留 8cm 全分辨率)
+    max_target_icp_pts: 24000         # ICP 目标点数硬上限 (防止 4 核 CPU 下卡顿飙升)
+    coarse_corr_dist: 1.00            # 粗配准搜索半径 (m)，用于拉回 FAST-LIO 大滑移
+    coarse_trigger_fitness: 0.62      # 配准前 25cm 咬合度低于此值时尝试粗配准
+    coarse_trigger_fitness_10cm: 0.56 # 配准前 10cm 咬合度低于此值时尝试粗配准
+    fine_corr_dist: 0.22              # 精配准收敛半径 (m)
+    eval_corr_dist: 0.25              # 整体咬合度评估阈值 (m)
+    icp_max_corr_dist: 0.25           # 常规跟踪紧致配准半径，防楼梯相邻台阶跨吸附
+    icp_huber_k: 0.15
+    icp_max_iterations: 25
+    degen_ratio_thresh: 0.08          # 法向量特征值比 λ_k/λ_max 低于此值时沿退化轴阻尼回拉
+    degen_ratio_floor: 0.015          # 低于此特征值比时退化轴完全信任 FAST-LIO 预测
+    degen_min_eigenvalue: 25.0        # 退化轴最低法向量支持度阈值
+    scan_match_color_dist: 0.16       # 实时扫描点正常匹配(绿) vs 匹配不上(红)的判定阈值 (m)
+    error_eval_max_dist: 0.15         # 毫米级点云误差统计的内点最大距离 (m)
+
+    # 实时“保留新而删旧”门控与射线参数
+    min_update_fitness: 0.55          # 配准咬合度高于 55% 才允许改写内存地图
+    max_update_rmse: 0.12
+    min_hits_to_add: 3                # 连续 3 帧稳定观测才正式保留为新静态特征 (过滤行人等动态点)
+    new_point_min_dist: 0.14          # 紧贴先验墙面/地面 14cm 内的体素边界抖动不误标为蓝色新增
+    ray_max_range: 8.0                # 射线穿透删旧有效半径
+    ray_clearance_m: 0.35             # 激光穿透旧点 35cm 以上才判定旧障碍消失
+    live_keep_radius_m: 0.28          # 28cm 内仍有实时雷达回波的体素受保护，绝不误删
+    ray_tube_radius_m: 0.11           # 射线管垂直半宽 11cm，防止邻近光束误擦除真实障碍边缘

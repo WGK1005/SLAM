@@ -14,6 +14,10 @@ if [ ! -d "$BAG" ]; then
 fi
 
 source "$WS/ros_env.sh" >/dev/null 2>&1
+for _nvdir in "$HOME"/.local/lib/python3.*/site-packages/nvidia/*/lib; do
+  [ -d "$_nvdir" ] && LD_LIBRARY_PATH="$_nvdir:${LD_LIBRARY_PATH:-}"
+done
+export LD_LIBRARY_PATH
 cd "$WS"
 
 cleanup() {
